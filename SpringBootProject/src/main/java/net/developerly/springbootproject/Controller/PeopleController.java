@@ -2,6 +2,7 @@ package net.developerly.springbootproject.Controller;
 
 import net.developerly.springbootproject.Model.People;
 import net.developerly.springbootproject.Repository.PeopleRepository;
+import net.developerly.springbootproject.Service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,9 @@ public class PeopleController {
 
     @Autowired
     private PeopleRepository peopleRepository;
+
+    @Autowired
+    private PeopleService peopleService;
 
     @GetMapping(value = "/peoples")
     public List<People> peopleList() {
@@ -38,12 +42,12 @@ public class PeopleController {
         return peopleRepository.save(people);
     }
 
-    @GetMapping(value = "queryById/{id}")
+    @GetMapping(value = "/queryById/{id}")
     public People getPeople(@PathVariable("id") Integer id)  {
         return peopleRepository.findOne(id);
     }
 
-    @PutMapping(value = "updateById/{id}")
+    @PutMapping(value = "/updateById/{id}")
     public People updatePeople(@PathVariable("id") Integer id,
                                @RequestParam("name") String name,
                                @RequestParam("age") Integer age)  {
@@ -54,9 +58,15 @@ public class PeopleController {
         return peopleRepository.save(people);
     }
 
-    @DeleteMapping(value = "deleteById/{id}")
+    @DeleteMapping(value = "/deleteById/{id}")
     public void delete(@PathVariable("id") Integer id) {
         peopleRepository.delete(id);
+    }
+
+
+    @PostMapping(value = "/insertTwo")
+    public void insertTwo() {
+        peopleService.inserTwo();
     }
 
 }
