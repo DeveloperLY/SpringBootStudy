@@ -1,0 +1,10 @@
+server:
+  port: 8081
+
+name: "DeveloperLY"
+age: 18
+content: "prod -- My Name is ${name}, I am ${age} years old."
+
+people:
+  name: "DeveloperLY"
+  age: 18

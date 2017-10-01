@@ -1,0 +1,10 @@
+application.ymlserver:
+  port: 8080
+
+name: "DeveloperLY"
+age: 18
+content: "dev -- My Name is ${name}, I am ${age} years old."
+
+people:
+  name: "DeveloperLY"
+  age: 18
