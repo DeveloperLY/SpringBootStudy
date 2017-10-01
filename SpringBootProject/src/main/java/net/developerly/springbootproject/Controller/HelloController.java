@@ -1,5 +1,6 @@
-package net.developerly.springbootproject;
+package net.developerly.springbootproject.Controller;
 
+import net.developerly.springbootproject.PeopleProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
