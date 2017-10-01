@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,17 +28,17 @@ public class HelloController {
     @Autowired
     private PeopleProperties peopleProperties;
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @RequestMapping(value = {"/hello", "/hi"}, method = RequestMethod.GET)
     public String say() {
         return "Hello Spring Boot !";
     }
 
     @RequestMapping(value = "/info", method = RequestMethod.GET)
-    public String myInfo() {
+    public String myInfo(@RequestParam("age") Integer age) {
         return "My Name is" + name + ", I am " + age + " years old.";
     }
 
-    @RequestMapping(value = "/content", method = RequestMethod.GET)
+    @RequestMapping(value = "/content", method = RequestMethod.POST)
     public String content() {
         return content;
     }
