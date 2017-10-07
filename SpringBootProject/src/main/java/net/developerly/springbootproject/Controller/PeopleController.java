@@ -4,8 +4,10 @@ import net.developerly.springbootproject.domain.People;
 import net.developerly.springbootproject.repository.PeopleRepository;
 import net.developerly.springbootproject.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -32,12 +34,13 @@ public class PeopleController {
     }
 
     @PostMapping(value = "/addPeople")
-    public People addPeople(@RequestParam("name") String name,
-                            @RequestParam("age") Integer age) {
-
-        People people = new People();
-        people.setName(name);
-        people.setAge(age);
+    public People addPeople(@Valid People people, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getFieldError().getDefaultMessage());
+            return null;
+        }
+        people.setName(people.getName());
+        people.setAge(people.getAge());
 
         return peopleRepository.save(people);
     }
