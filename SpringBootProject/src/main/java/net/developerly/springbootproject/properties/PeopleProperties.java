@@ -1,32 +1,21 @@
-package net.developerly.springbootproject.Model;
+package net.developerly.springbootproject.properties;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
+ * People配置文件
+ *
  * @author LY
  * @create 2017/10/01
  **/
-@Entity
-public class People {
-
-    private Integer id;
+@Component
+@ConfigurationProperties(prefix = "people")
+public class PeopleProperties {
 
     private String name;
 
     private Integer age;
-
-
-    @Id
-    @GeneratedValue
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -43,5 +32,4 @@ public class People {
     public void setAge(Integer age) {
         this.age = age;
     }
-
 }

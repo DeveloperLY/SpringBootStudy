@@ -1,6 +1,6 @@
-package net.developerly.springbootproject.Repository;
+package net.developerly.springbootproject.repository;
 
-import net.developerly.springbootproject.Model.People;
+import net.developerly.springbootproject.domain.People;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

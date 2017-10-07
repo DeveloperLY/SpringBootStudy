@@ -1,8 +1,8 @@
-package net.developerly.springbootproject.Controller;
+package net.developerly.springbootproject.controller;
 
-import net.developerly.springbootproject.Model.People;
-import net.developerly.springbootproject.Repository.PeopleRepository;
-import net.developerly.springbootproject.Service.PeopleService;
+import net.developerly.springbootproject.domain.People;
+import net.developerly.springbootproject.repository.PeopleRepository;
+import net.developerly.springbootproject.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,7 @@
-package net.developerly.springbootproject.Service;
+package net.developerly.springbootproject.service;
 
-import net.developerly.springbootproject.Model.People;
-import net.developerly.springbootproject.Repository.PeopleRepository;
+import net.developerly.springbootproject.domain.People;
+import net.developerly.springbootproject.repository.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
