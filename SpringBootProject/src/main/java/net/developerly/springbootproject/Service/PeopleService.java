@@ -43,4 +43,8 @@ public class PeopleService {
         }
         return people;
     }
+
+    public People findOne(Integer id) {
+        return peopleRepository.findOne(id);
+    }
 }

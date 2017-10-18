@@ -25,7 +25,7 @@ public class ExceptionHandle {
             PeopleException peopleException = (PeopleException) e;
             return ResultUtil.error(peopleException.getCode(), peopleException.getMessage());
         } else {
-            logger.error("【系统异常】{}", e);
+            logger.error("【系统异常】{}", e.getMessage());
             return ResultUtil.error(-1, "未知错误");
         }
     }
