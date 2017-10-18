@@ -1,6 +1,8 @@
 package net.developerly.springbootproject.service;
 
 import net.developerly.springbootproject.domain.People;
+import net.developerly.springbootproject.enums.ResultEnum;
+import net.developerly.springbootproject.exception.PeopleException;
 import net.developerly.springbootproject.repository.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +30,17 @@ public class PeopleService {
         people2.setAge(33);
 
         peopleRepository.save(people2);
+    }
+
+    public People getPeopleById(Integer id) throws Exception {
+        People people = peopleRepository.findOne(id);
+        if (people.getName().equals("")) {
+            throw new PeopleException(ResultEnum.NAME_NULL);
+        } else if (people.getAge() == 0) {
+            throw new PeopleException(ResultEnum.AGE_NULL);
+        } else if (people == null) {
+            throw new PeopleException(ResultEnum.ALL_NULL);
+        }
+        return people;
     }
 }

@@ -1,8 +1,12 @@
 package net.developerly.springbootproject.controller;
 
 import net.developerly.springbootproject.domain.People;
+import net.developerly.springbootproject.domain.Result;
 import net.developerly.springbootproject.repository.PeopleRepository;
 import net.developerly.springbootproject.service.PeopleService;
+import net.developerly.springbootproject.utils.ResultUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +20,7 @@ import java.util.List;
  **/
 @RestController
 public class PeopleController {
+    private final static Logger logger = LoggerFactory.getLogger(PeopleController.class);
 
     @Autowired
     private PeopleRepository peopleRepository;
@@ -34,20 +39,17 @@ public class PeopleController {
     }
 
     @PostMapping(value = "/addPeople")
-    public People addPeople(@Valid People people, BindingResult bindingResult) {
+    public Result<People> addPeople(@Valid People people, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
-        people.setName(people.getName());
-        people.setAge(people.getAge());
 
-        return peopleRepository.save(people);
+        return ResultUtil.success(peopleRepository.save(people));
     }
 
     @GetMapping(value = "/queryById/{id}")
-    public People getPeople(@PathVariable("id") Integer id)  {
-        return peopleRepository.findOne(id);
+    public Result<People> getPeople(@PathVariable("id") Integer id) throws Exception {
+        return ResultUtil.success(peopleService.getPeopleById(id));
     }
 
     @PutMapping(value = "/updateById/{id}")
