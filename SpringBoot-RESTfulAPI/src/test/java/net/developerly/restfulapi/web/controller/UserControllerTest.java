@@ -1,6 +1,7 @@
 package net.developerly.restfulapi.web.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -14,6 +15,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.util.Date;
 
 
 @RunWith(SpringRunner.class)
@@ -58,4 +61,19 @@ public class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().is4xxClientError());
     }
+
+    @Test
+    public void whenCreateSuccess() throws Exception {
+        String content = "{\"username\":\"DeveloperLY\",\"password\":null,\"birthday\":"+new Date().getTime()+"}";
+
+        String result = mockMvc.perform(post("/user")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(content))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value("1"))
+                .andReturn().getResponse().getContentAsString();
+
+        System.out.println(result);
+    }
+
 }

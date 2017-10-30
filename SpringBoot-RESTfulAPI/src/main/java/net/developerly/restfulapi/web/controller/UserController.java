@@ -1,10 +1,7 @@
 package net.developerly.restfulapi.web.controller;
 
 import net.developerly.restfulapi.dto.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +13,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @PostMapping
+    public User create(@RequestBody User user) {
+
+        System.out.println(user.getId());
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
+        System.out.println(user.getBirthday());
+
+        user.setId("1");
+        return user;
+    }
 
     @GetMapping
     public List<User> query() {
