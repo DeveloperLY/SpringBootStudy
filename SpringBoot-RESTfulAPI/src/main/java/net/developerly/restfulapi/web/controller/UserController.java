@@ -26,6 +26,22 @@ public class UserController {
         return user;
     }
 
+    @PutMapping("/{id:\\d+}")
+    public User update(@RequestBody User user) {
+
+        System.out.println(user.getId());
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
+        System.out.println(user.getBirthday());
+
+        return user;
+    }
+
+    @DeleteMapping("/{id:\\d+}")
+    public void delete(@PathVariable String id) {
+        System.out.println(id);
+    }
+
     @GetMapping
     public List<User> query() {
         List<User> users = new ArrayList<>();
@@ -44,4 +60,5 @@ public class UserController {
         user.setPassword("123456");
         return user;
     }
+
 }
