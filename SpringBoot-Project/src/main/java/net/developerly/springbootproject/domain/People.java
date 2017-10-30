@@ -1,6 +1,5 @@
 package net.developerly.springbootproject.domain;
 
-import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Entity;
